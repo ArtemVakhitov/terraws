@@ -36,5 +36,5 @@ resource "aws_instance" "example" {
   ami = "ami-0261755bbcb8c4a84"
   # If CPU requirement <= standard no. of CPUs for that RAM amount, select instance type based on RAM
   # If CPU requirement > standard no. of CPUs for that RAM amount, select instance type with that many CPUs and minimum RAM
-  instance_type = (var.cpu <= cpu_for_lram[lram]) ? flatten(instance_types)[lram] : instance_types[lcpu][0])]
+  instance_type = (var.cpu <= cpu_for_lram[lram]) ? flatten(instance_types)[lram] : instance_types[lcpu][0]
 }
