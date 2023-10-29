@@ -18,7 +18,7 @@ variable "cpu" {
 
 variable "ram" {
   type = number
-  default = 2
+  default = 1
 }
 
 locals {
