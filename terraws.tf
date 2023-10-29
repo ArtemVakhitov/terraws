@@ -23,9 +23,10 @@ variable "ram" {
 
 locals {
   # Log metric to use as list index for RAM amount
-  lram = (var.ram < 1) ? 0 : min(ceil(log(2, var.ram)), 5) + 1
+  # Anything < 1 GiB interpreted as 0.5 Gib (t2.nano)
+  lram = (var.ram < 1) ? 0 : min(ceil(log(var.ram, 2)), 5) + 1
   # Log metric to use as list index for CPU number
-  lcpu = min(ceil(log(2, var.cpu)), 3)
+  lcpu = min(ceil(log(var.cpu, 2)), 3)
   # No. of CPUs for that amount of RAM in standard instance types
   cpu_for_lram = [1, 1, 1, 2, 2, 4, 8]
   # Instance types grouped by CPU number
