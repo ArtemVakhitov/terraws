@@ -21,6 +21,11 @@ variable "ram" {
   default = 1
 }
 
+variable "count" {
+  type = number
+  default = 1
+}
+
 locals {
   # Log metric to use as list index for RAM amount
   # Anything < 1 GiB interpreted as 0.5 Gib (t2.nano)
@@ -37,6 +42,7 @@ locals {
 }
 
 resource "aws_instance" "example" {
+  count = var.count
   ami = "ami-0261755bbcb8c4a84"
   
   # If CPU requirement <= standard no. of CPUs for that RAM amount, select instance type based on RAM
