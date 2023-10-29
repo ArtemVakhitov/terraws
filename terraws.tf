@@ -21,7 +21,7 @@ variable "ram" {
   default = 1
 }
 
-variable "count" {
+variable "instances" {
   type = number
   default = 1
 }
@@ -42,7 +42,7 @@ locals {
 }
 
 resource "aws_instance" "example" {
-  count = var.count
+  count = var.instances
   ami = "ami-0261755bbcb8c4a84"
   
   # If CPU requirement <= standard no. of CPUs for that RAM amount, select instance type based on RAM
